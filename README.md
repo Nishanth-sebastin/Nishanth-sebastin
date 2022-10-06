@@ -28,12 +28,6 @@ const Nishanth = {
 [![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=Nishanth-sebastin&theme=radical)](https://git.io/streak-stats)
 
 <br>
-  <summary><b>⚡ Recent GitHub Activity</b></summary>
-  <br/>
-  
-   <a href="https://github.com/Nishanth-sebastin"><img alt="Nishanth's Activity Graph" src="https://activity-graph.herokuapp.com/graph?username=Nishanth-sebastin&custom_title=Nishanth%20Noronha's%20Contribution%20Graph&theme=react-dark" /></a>
-  <br/>
-
 
 ### Thank you for visiting my profile 🤓
 
