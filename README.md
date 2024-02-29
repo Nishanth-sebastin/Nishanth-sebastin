@@ -107,18 +107,18 @@
 <br>
 
 
-## <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="35"><b> Github Stats </b>
-<br>
-
-<div align="left" >
-
-![Nishath's GitHub stats](https://github-readme-stats.vercel.app/api?username=nishanth-sebastin&show_icons=true&theme=radical)
-
-</div>
+# 📊 GitHub Stats:
+![](https://github-readme-stats.vercel.app/api?username=nishanth-sebastin&theme=blue-green&hide_border=false&include_all_commits=true&count_private=true)<br/>
+![](https://github-readme-streak-stats.herokuapp.com/?user=nishanth-sebastin&theme=blue-green&hide_border=false)<br/>
+![](https://github-readme-stats.vercel.app/api/top-langs/?username=nishanth-sebastin&theme=blue-green&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
 
 <br>
-<br>
-<br>
+## 🏆 GitHub Trophies:
+
+![](https://github-profile-trophy.vercel.app/?username=nishanth-sebastin&theme=radical&no-frame=false&no-bg=false&margin-w=4)
+
+### 🔝 Top Contributed Repo
+![](https://github-contributor-stats.vercel.app/api?username=nishanth-sebastin&limit=5&theme=dark&combine_all_yearly_contributions=true)
 
 -----
 
@@ -161,8 +161,3 @@
 <br>
 <br>
 <br>
-
-
-Credit: [Nishanth Sebastin](https://github.com/Nishanth-sebastin)
-
-Last Edited on: 10/06/2023
