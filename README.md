@@ -113,7 +113,8 @@
 ![](https://github-readme-stats.vercel.app/api/top-langs/?username=nishanth-sebastin&theme=blue-green&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
 
 <br>
-## 🏆 GitHub Trophies:
+
+# 🏆 GitHub Trophies:
 
 ![](https://github-profile-trophy.vercel.app/?username=nishanth-sebastin&theme=radical&no-frame=false&no-bg=false&margin-w=4)
 
