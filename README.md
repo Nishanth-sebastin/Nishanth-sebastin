@@ -107,19 +107,6 @@
 <br>
 
 
-# 📊 GitHub Stats:
-[![NishanthSebastin's GitHub | Stats](https://stats.quira.sh/NishanthSebastin/github?theme=dark)](https://quira.sh?utm_source=widgets&utm_campaign=NishanthSebastin)
-<br><br>
-[![NishanthSebastin's GitHub | Languages Over Time](https://stats.quira.sh/NishanthSebastin/languages-over-time?theme=dark)](https://quira.sh?utm_source=widgets&utm_campaign=NishanthSebastin)
-<br><br>
-[![NishanthSebastin's GitHub | Topics Over Time](https://stats.quira.sh/NishanthSebastin/topics-over-time?theme=dark)](https://quira.sh?utm_source=widgets&utm_campaign=NishanthSebastin)
-
-<br>
-
-# 🏆 GitHub Trophies:
-
-![](https://github-profile-trophy.vercel.app/?username=nishanth-sebastin&theme=radical&no-frame=false&no-bg=false&margin-w=4)
-
 ### 🔝 Top Contributed Repo
 ![](https://github-contributor-stats.vercel.app/api?username=nishanth-sebastin&limit=5&theme=dark&combine_all_yearly_contributions=true)
 
