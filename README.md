@@ -1,102 +1,155 @@
-# Job Fetcher
 
-Fetches the **last 24 hours** of job postings for a role across many sources and
-appends them to an Excel sheet (or Google Sheet) with filter dropdowns.
+<h1 align="center"><b>Hi , I'm Nishanth Sebastin </b><img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="35"></h1>
 
-## Sources
+<p align="center">
+  <a href="https://github.com/DenverCoder1/readme-typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Time+New+Roman&color=cyan&size=25&center=true&vCenter=true&width=600&height=100&lines=Full+Stack+Developer;Active+Learner/Researcher;Love+to+learn+new+stuffs..<3"></a>
+</p>
 
-| Type | Sources | Reliability |
-|------|---------|-------------|
-| Free APIs | Adzuna*, Jooble*, Remotive, RemoteOK, Arbeitnow, The Muse, Jobicy | Stable |
-| Company feeds (ATS) | Greenhouse, Lever, Ashby | Stable, no keys |
-| Browser scrapers | **LinkedIn, Naukri, Wellfound, Indeed** | Fragile (see note) |
 
-`*` need a free API key. Toggle any source on/off in `config.yaml`.
+<br>
 
-> **Scraper note:** LinkedIn & Indeed scrape reliably in testing; **Naukri &
-> Wellfound are often Cloudflare/login-gated and return 0** — that's expected,
-> not a bug. A broken scraper never crashes the run; it just yields nothing.
 
-## What it does
 
-1. Run it → it asks `Enter role:` → type a role + Enter.
-2. Queries every enabled source across **all your cities** (see `locations`),
-   keeping only postings from the last 24h.
-3. Writes to a workbook with **two tabs**:
-   - **`Jobs`** — active leads. New jobs append below previous ones. Existing
-     not-applied rows are **never deleted**; their **`Age`** column refreshes
-     each run (a job from yesterday shows "2 days ago" today).
-   - **`Applied`** — when you set a row's **`Applied`** column to `Yes`, the
-     **next run moves it here** (stamped with `Applied At`) and removes it from
-     `Jobs`. It won't come back as a new lead.
-4. Filter dropdowns on every column → filter by Platform, Role, City, Posted
-   date, Age, Applied status, right inside Excel/Sheets.
+	
+## <picture><img src = "https://github.com/0xAbdulKhalid/0xAbdulKhalid/raw/main/assets/mdImages/about_me.gif" width = 50px></picture> **About me**
 
-### The applied workflow
-- Open `jobs.xlsx`, browse the `Jobs` tab.
-- Applied to one? Type `Yes` in its `Applied` column, save.
-- Next run: it moves to the `Applied` tab; everything you didn't apply to stays
-  put (with refreshed ages); new jobs get added below.
+<picture> <img align="right" src="https://github.com/7oSkaaa/7oSkaaa/blob/main/Images/Right_Side.gif?raw=true" width = 250px></picture>
 
-## Setup
+<br>
 
-```bash
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-.venv/bin/python -m playwright install chromium   # for the browser scrapers
-```
+- A passionate Full Stack Web Developer
+- Currently learning App Development 
+- Personal website will be launch soon
+- I’m currently open for an Intern or a new job opportunity.
 
-## Run
+<br><br>
 
-```bash
-.venv/bin/python jobfetch.py                      # prompts for the role
-.venv/bin/python jobfetch.py --role "Data Analyst"
-.venv/bin/python jobfetch.py --days 3             # widen the window
-.venv/bin/python jobfetch.py --remote-only
-```
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
 
-## Config (`config.yaml`)
+## <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width ="25"><b> Skills</b>
+<br>
 
-- **`locations:`** — the cities to search. LinkedIn, Indeed and Adzuna query
-  each city; Jooble/remote APIs use the broad `location`. Edit this list freely.
-- **`sources:`** — turn each source on/off. Disable `naukri`/`wellfound` if their
-  0-results noise bothers you.
-- **`adzuna` / `jooble`** — paste free API keys for strong India coverage:
-  - Adzuna: https://developer.adzuna.com  (best India API)
-  - Jooble: https://jooble.org/api/about
-- **`ats:`** — list company "board tokens" (the slug in their careers URL) for
-  Greenhouse/Lever/Ashby. Add the startups you care about.
-- **`defaults:`** — `days` (window), `location`, `remote_only`, per-source cap.
+<p align="center">
 
-## Output: Excel (default) or Google Sheets
+- **Languages**:
+    
+    ![C](https://img.shields.io/badge/Java%20-%232370ED.svg?style=for-the-badge&logo=c&logoColor=white)
+    <img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
+    <img src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white"/>
 
-Choose the output in **`config.local.yaml`** → `output.backend`:
-`excel` (local file) or `gsheet` (cloud). Secrets/keys also live in
-`config.local.yaml`, which is git-ignored and never pushed.
+<br>   
+    
+- **Front-End Development**:
 
-### Cloud Google Sheets — one-time setup (~10 min)
+   <img src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>
+   <img src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/>
+   <img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
+   <img src="https://img.shields.io/badge/typescript%20-%23007ACC.svg?&style=for-the-badge&logo=typescript&logoColor=white"/>
+ 
 
-1. Go to https://console.cloud.google.com → create a project (any name).
-2. **APIs & Services → Library** → enable **Google Sheets API** and
-   **Google Drive API** (search each, click Enable).
-3. **APIs & Services → Credentials → Create credentials → Service account**.
-   Give it a name, Create, Done.
-4. Click the new service account → **Keys → Add key → Create new key → JSON**.
-   A `.json` file downloads. Rename it to **`service_account.json`** and put it
-   in this folder (it's git-ignored — stays private).
-5. Open that JSON, copy the `"client_email"` value
-   (looks like `name@project.iam.gserviceaccount.com`).
-6. Create a Google Sheet (e.g. name it **"Job Tracker"**). Click **Share**,
-   paste that email, give it **Editor**, Send.
-7. In `config.local.yaml` set `output.gsheet.spreadsheet` to the sheet's exact
-   name (`"Job Tracker"`), and make sure `output.backend: gsheet`.
+<br>
 
-Now `findjobs` writes straight to that cloud sheet — open it on any device. It
-creates the **Jobs** and **Applied** tabs automatically on the first run.
+ - **Frameworks**:
+   
+    <img src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+    <img src="https://img.shields.io/badge/nestjs%20-%23E0234E.svg?&style=for-the-badge&logo=nestjs&logoColor=white" />
+    <img src="https://img.shields.io/badge/material%20ui%20-%230081CB.svg?&style=for-the-badge&logo=material-ui&logoColor=white"/>
+    <img src="https://img.shields.io/badge/nestjs%20-%23E0234E.svg?&style=for-the-badge&logo=nestjs&logoColor=white" />
+    <img src="https://img.shields.io/badge/redux%20-%23593d88.svg?&style=for-the-badge&logo=redux&logoColor=white"/>
+<br>
 
-## Tips
+       
+- **Back-End Development**:
 
-- `Applied` defaults to `No`; edit it to `Yes` — reruns won't overwrite (matched by URL).
-- Delete `jobs.xlsx` to start a fresh sheet.
-- Schedule a daily top-up with `cron`:
-  `0 9 * * * cd /path/to/jobapply && .venv/bin/python jobfetch.py --role "Python Developer"`
+   <img src="https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white"/>
+   <img src="https://img.shields.io/badge/express.js%20-%23404d59.svg?&style=for-the-badge"/>
+   <img src="https://img.shields.io/badge/mysql-%2300f.svg?&style=for-the-badge&logo=mysql&logoColor=white"/>
+   <img src ="https://img.shields.io/badge/MongoDB-%234ea94b.svg?&style=for-the-badge&logo=mongodb&logoColor=white"/>
+
+<br>
+    
+- **App Development**:
+
+   <img src="https://img.shields.io/badge/react_native%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+  
+<br>
+
+- **Cloud Hosting**:
+
+    ![Github Pages](https://img.shields.io/badge/GitHub%20Pages-%23327FC7.svg?style=for-the-badge&logo=github&logoColor=white)
+   
+    
+<br>
+
+- **Softwares and Tools**:
+
+    ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+    ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+    ![Google](https://img.shields.io/badge/google-%234285F4.svg?style=for-the-badge&logo=google&logoColor=white)
+    ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+    ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) 
+
+<br>
+
+- **Extras**:
+
+    ![Terminal](https://img.shields.io/badge/Terminal-%23054020?style=for-the-badge&logo=gnu-bash&logoColor=white)
+    ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)   
+
+
+</p>
+
+<br>
+<br>
+
+-----
+
+<br>
+
+
+### 🔝 Top Contributed Repo
+![](https://github-contributor-stats.vercel.app/api?username=nishanth-sebastin&limit=5&theme=dark&combine_all_yearly_contributions=true)
+
+-----
+
+<br>
+<br>
+
+## <b> Let's Connect..!</b><img src="https://github.com/0xAbdulKhalid/0xAbdulKhalid/raw/main/assets/mdImages/handshake.gif" width ="80">
+<br>
+<div align='left'>
+
+<ul>
+
+<li>
+<a href="https://www.linkedin.com/in/nishanth-sebastin-193a721bb/" target="_blank">
+<img src="https://img.shields.io/badge/linkedin:  Nishanth-%2300acee.svg?color=405DE6&style=for-the-badge&logo=linkedin&logoColor=white" alt=linkedin style="margin-bottom: 5px;"/>
+</a>
+</li>
+
+<br>
+
+<li>
+<a href="https://twitter.com/NishanthSe50138" target="_blank">
+<img src="https://img.shields.io/badge/twitter:  Nishanth-%2300acee.svg?color=1DA1F2&style=for-the-badge&logo=twitter&logoColor=white" alt=twitter style="margin-bottom: 5px;"/>
+</a>
+</li>
+
+<br>
+
+<li>
+<a href="mailto:nishanthsebastin498@gmail.com" target="_blank">
+<img src="https://img.shields.io/badge/gmail:  Nishanth-%23EA4335.svg?style=for-the-badge&logo=gmail&logoColor=white" t=mail style="margin-bottom: 5px;" />
+</a>
+</li>
+	
+</ul>
+</div>
+
+<br>
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+<br>
+<br>
+<br>
+
+![visitor badge](https://visitor-badge.laobi.icu/badge?page_id=nishanth-sebastin.visitors-badge)
