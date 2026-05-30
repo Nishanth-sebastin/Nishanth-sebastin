@@ -1,112 +1,102 @@
-<!-- ===================== HEADER ===================== -->
-<h1 align="center">Hi, I'm Nishanth Sebastin 👋</h1>
-<h3 align="center">Full-Stack Software Engineer · Cloud & DevOps</h3>
+# Job Fetcher
 
-<!-- ===================== TYPING SVG ===================== -->
-<p align="center">
-  <a href="https://github.com/DenverCoder1/readme-typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=22D3EE&center=true&vCenter=true&width=640&lines=Building+scalable+SaaS+products.;Full-Stack+%2B+Cloud+%2B+DevOps.;Node.js+%C2%B7+NestJS+%C2%B7+React+%C2%B7+AWS+%C2%B7+Kubernetes;From+concept+to+deployment." alt="Typing SVG" />
-  </a>
-</p>
+Fetches the **last 24 hours** of job postings for a role across many sources and
+appends them to an Excel sheet (or Google Sheet) with filter dropdowns.
 
-<!-- ===================== SOCIAL BADGES ===================== -->
-<p align="center">
-  <a href="https://www.linkedin.com/in/nishanth-sebastin/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>&nbsp;
-  <a href="https://twitter.com/NishanthSe50138"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter"/></a>&nbsp;
-  <a href="mailto:nishanthsebastin498@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>&nbsp;
-  <img src="https://komarev.com/ghpvc/?username=nishanth-sebastin&style=for-the-badge&color=22d3ee&label=PROFILE+VIEWS" alt="Profile Views"/>
-</p>
+## Sources
 
-<br/>
+| Type | Sources | Reliability |
+|------|---------|-------------|
+| Free APIs | Adzuna*, Jooble*, Remotive, RemoteOK, Arbeitnow, The Muse, Jobicy | Stable |
+| Company feeds (ATS) | Greenhouse, Lever, Ashby | Stable, no keys |
+| Browser scrapers | **LinkedIn, Naukri, Wellfound, Indeed** | Fragile (see note) |
 
-<!-- ===================== ABOUT ===================== -->
-## 👨‍💻 &nbsp;About Me
+`*` need a free API key. Toggle any source on/off in `config.yaml`.
 
-I'm a **Full-Stack Software Engineer at Cartrabbit**, building scalable SaaS products for the **WooCommerce & Shopify** ecosystems — used by thousands of e-commerce merchants worldwide.
+> **Scraper note:** LinkedIn & Indeed scrape reliably in testing; **Naukri &
+> Wellfound are often Cloudflare/login-gated and return 0** — that's expected,
+> not a bug. A broken scraper never crashes the run; it just yields nothing.
 
-I work end-to-end and into infrastructure: building backend services with **Node.js, NestJS & Express**, crafting responsive UIs with **React & Vue.js**, and deploying & scaling on **AWS and Azure** using **Docker, Kubernetes, CI/CD, and Terraform**.
+## What it does
 
-- 🔭 &nbsp;Building **Yuko** — a loyalty & rewards SaaS platform (workflow automation engine, email builder, loyalty/tiers/memberships)
-- ⚙️ &nbsp;Comfortable across the stack: **frontend → backend → cloud → deployment**
-- 🌱 &nbsp;Deepening **system design**, **scalable backend architecture**, and **cloud-native infrastructure**
-- 💬 &nbsp;Ask me about **Node.js, NestJS, React, API design, AWS & Kubernetes**
-- 📫 &nbsp;Reach me at **nishanthsebastin498@gmail.com**
+1. Run it → it asks `Enter role:` → type a role + Enter.
+2. Queries every enabled source across **all your cities** (see `locations`),
+   keeping only postings from the last 24h.
+3. Writes to a workbook with **two tabs**:
+   - **`Jobs`** — active leads. New jobs append below previous ones. Existing
+     not-applied rows are **never deleted**; their **`Age`** column refreshes
+     each run (a job from yesterday shows "2 days ago" today).
+   - **`Applied`** — when you set a row's **`Applied`** column to `Yes`, the
+     **next run moves it here** (stamped with `Applied At`) and removes it from
+     `Jobs`. It won't come back as a new lead.
+4. Filter dropdowns on every column → filter by Platform, Role, City, Posted
+   date, Age, Applied status, right inside Excel/Sheets.
 
-<br/>
+### The applied workflow
+- Open `jobs.xlsx`, browse the `Jobs` tab.
+- Applied to one? Type `Yes` in its `Applied` column, save.
+- Next run: it moves to the `Applied` tab; everything you didn't apply to stays
+  put (with refreshed ages); new jobs get added below.
 
-<!-- ===================== TECH STACK ===================== -->
-## 🧰 &nbsp;Tech Stack
+## Setup
 
-**Languages**
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/python -m playwright install chromium   # for the browser scrapers
+```
 
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Python](https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white)
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+## Run
 
-**Backend**
+```bash
+.venv/bin/python jobfetch.py                      # prompts for the role
+.venv/bin/python jobfetch.py --role "Data Analyst"
+.venv/bin/python jobfetch.py --days 3             # widen the window
+.venv/bin/python jobfetch.py --remote-only
+```
 
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
-![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
-![GraphQL](https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white)
+## Config (`config.yaml`)
 
-**Frontend**
+- **`locations:`** — the cities to search. LinkedIn, Indeed and Adzuna query
+  each city; Jooble/remote APIs use the broad `location`. Edit this list freely.
+- **`sources:`** — turn each source on/off. Disable `naukri`/`wellfound` if their
+  0-results noise bothers you.
+- **`adzuna` / `jooble`** — paste free API keys for strong India coverage:
+  - Adzuna: https://developer.adzuna.com  (best India API)
+  - Jooble: https://jooble.org/api/about
+- **`ats:`** — list company "board tokens" (the slug in their careers URL) for
+  Greenhouse/Lever/Ashby. Add the startups you care about.
+- **`defaults:`** — `days` (window), `location`, `remote_only`, per-source cap.
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
-![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
-![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=threedotjs&logoColor=white)
-![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+## Output: Excel (default) or Google Sheets
 
-**Cloud & DevOps**
+Choose the output in **`config.local.yaml`** → `output.backend`:
+`excel` (local file) or `gsheet` (cloud). Secrets/keys also live in
+`config.local.yaml`, which is git-ignored and never pushed.
 
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonwebservices&logoColor=FF9900)
-![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
-![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/CI%2FCD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+### Cloud Google Sheets — one-time setup (~10 min)
 
-**Databases**
+1. Go to https://console.cloud.google.com → create a project (any name).
+2. **APIs & Services → Library** → enable **Google Sheets API** and
+   **Google Drive API** (search each, click Enable).
+3. **APIs & Services → Credentials → Create credentials → Service account**.
+   Give it a name, Create, Done.
+4. Click the new service account → **Keys → Add key → Create new key → JSON**.
+   A `.json` file downloads. Rename it to **`service_account.json`** and put it
+   in this folder (it's git-ignored — stays private).
+5. Open that JSON, copy the `"client_email"` value
+   (looks like `name@project.iam.gserviceaccount.com`).
+6. Create a Google Sheet (e.g. name it **"Job Tracker"**). Click **Share**,
+   paste that email, give it **Editor**, Send.
+7. In `config.local.yaml` set `output.gsheet.spreadsheet` to the sheet's exact
+   name (`"Job Tracker"`), and make sure `output.backend: gsheet`.
 
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+Now `findjobs` writes straight to that cloud sheet — open it on any device. It
+creates the **Jobs** and **Applied** tabs automatically on the first run.
 
-<br/>
+## Tips
 
-<!-- ===================== FEATURED PROJECTS ===================== -->
-## 🚀 &nbsp;Featured Projects
-
-| Project | Description | Tech | Link |
-| :------ | :---------- | :--- | :--: |
-| **🦵 Knee Pre-Op Planning** | Browser-based 3D tool to visualize knee anatomy and plan surgery pre-operatively, with interactive rotate/zoom and on-model measurements. | React · Three.js · WebGL | [Live](https://knee-preop-planning-beta.vercel.app) |
-| **🚢 3D Ship Configurator** | Real-time 3D product configurator rendering a detailed ship model with live customization and 360° inspection. | React · Vite · Three.js | [Live](https://ship-configurator.vercel.app) |
-| **🪑 3D Furniture Configurators** | Interactive 3D configurators for furniture & seating — change materials/colors/components with instant live updates. | React · Vite · Three.js | [Live](https://furniture-configurator-six.vercel.app) |
-| **🏭 Kisentra Global** | Full-stack platform for an ISO-certified engineering & manufacturing company serving 12+ industries. Live in production. | Next.js · React · Tailwind | [Live](https://www.kisentraglobal.com) |
-| **🤝 RelationsWork** | Full-stack site for an organizational-development consultancy (transactional analysis & psychosocial methods). | Next.js · React | [Live](https://www.relationswork.in) |
-| **💍 DreamStrokes** | Full-stack site for a wedding decor & events business, with an image-rich venue showcase subsite. | Next.js · React | [Live](https://wedding.dreamstrokes.in) |
-
-<br/>
-
-<!-- ===================== GITHUB STATS ===================== -->
-## 📊 &nbsp;GitHub Stats
-
-<p align="center">
-  <img width="60%" src="https://github-readme-streak-stats.herokuapp.com/?user=nishanth-sebastin&hide_border=true&background=0d1117&stroke=22d3ee&ring=22d3ee&fire=22d3ee&currStreakLabel=22d3ee&sideLabels=c9d1d9&dates=8b949e&sideNums=c9d1d9&currStreakNum=c9d1d9" alt="GitHub Streak" />
-</p>
-
-<br/>
-
-<!-- ===================== CONNECT ===================== -->
-## 🤝 &nbsp;Let's Connect
-
-<p align="center">
-  <a href="https://www.linkedin.com/in/nishanth-sebastin/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>&nbsp;
-  <a href="https://twitter.com/NishanthSe50138"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter"/></a>&nbsp;
-  <a href="mailto:nishanthsebastin498@gmail.com"><img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail"/></a>
-</p>
-
-<p align="center"><i>⭐️ Thanks for stopping by — open to collaboration & new opportunities.</i></p>
+- `Applied` defaults to `No`; edit it to `Yes` — reruns won't overwrite (matched by URL).
+- Delete `jobs.xlsx` to start a fresh sheet.
+- Schedule a daily top-up with `cron`:
+  `0 9 * * * cd /path/to/jobapply && .venv/bin/python jobfetch.py --role "Python Developer"`
