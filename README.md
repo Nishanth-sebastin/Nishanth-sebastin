@@ -1,5 +1,6 @@
-<!-- ===================== HEADER BANNER ===================== -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F2027,50:203A43,100:2C5364&height=210&section=header&text=Nishanth%20Sebastin&fontSize=52&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=Full-Stack%20Software%20Engineer%20%7C%20Cloud%20%26%20DevOps&descAlignY=56&descSize=20" width="100%" />
+<!-- ===================== HEADER ===================== -->
+<h1 align="center">Hi, I'm Nishanth Sebastin 👋</h1>
+<h3 align="center">Full-Stack Software Engineer · Cloud & DevOps</h3>
 
 <!-- ===================== TYPING SVG ===================== -->
 <p align="center">
@@ -94,11 +95,6 @@ I work end-to-end and into infrastructure: building backend services with **Node
 ## 📊 &nbsp;GitHub Stats
 
 <p align="center">
-  <img width="48%" src="https://github-readme-stats.vercel.app/api?username=nishanth-sebastin&show_icons=true&count_private=true&hide_border=true&title_color=22d3ee&icon_color=22d3ee&text_color=c9d1d9&bg_color=0d1117" alt="GitHub Stats" />
-  <img width="48%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=nishanth-sebastin&layout=compact&hide_border=true&title_color=22d3ee&text_color=c9d1d9&bg_color=0d1117&langs_count=8" alt="Top Languages" />
-</p>
-
-<p align="center">
   <img width="60%" src="https://github-readme-streak-stats.herokuapp.com/?user=nishanth-sebastin&hide_border=true&background=0d1117&stroke=22d3ee&ring=22d3ee&fire=22d3ee&currStreakLabel=22d3ee&sideLabels=c9d1d9&dates=8b949e&sideNums=c9d1d9&currStreakNum=c9d1d9" alt="GitHub Streak" />
 </p>
 
@@ -114,5 +110,3 @@ I work end-to-end and into infrastructure: building backend services with **Node
 </p>
 
 <p align="center"><i>⭐️ Thanks for stopping by — open to collaboration & new opportunities.</i></p>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2C5364,50:203A43,100:0F2027&height=120&section=footer" width="100%" />
